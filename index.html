@@ -361,7 +361,7 @@
         function loadGoogleSheet() {
           // URL for CSV version of the Google Spreadsheet
           // which can be edited at https://docs.google.com/spreadsheets/d/1bKNOVa89aJMSgPJ7xHHabM-KNSC1PFCbl6nk5KoAjfU/edit?usp=sharing
-          url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSo68u6P9CAFHZiGBtQI2URuXT4tW6sCdE_hJ4nSDiKrilhSs2wfYO0-O89ZNcNKNREEid_CDXft69M/pub?gid=327478090&single=true&output=csv
+          url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSo68u6P9CAFHZiGBtQI2URuXT4tW6sCdE_hJ4nSDiKrilhSs2wfYO0-O89ZNcNKNREEid_CDXft69M/pub?gid=327478090&single=true&output=csv'
           fetch(url)
             .then((response) => {
               if (response.ok) response.text().then((csvtext) => {
