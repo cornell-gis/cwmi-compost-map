@@ -26,7 +26,6 @@
         <script src="js/leaflet-hash.js"></script>
         <script src="js/mustache-4.2.0.min.js"></script>
         <script src="data/counties_ny_1.js"></script>
-        <script src="data/compost_facility_survey_responses_1_2.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:19, minZoom:1
@@ -106,7 +105,21 @@
         bounds_group.addLayer(layer_counties_ny_1);
         map.addLayer(layer_counties_ny_1);
 
-        let template = `
+        let compost_tooltip_template = `
+<h3 style=\"color:green; text-transform:uppercase; font-weight:bold; font-size:112%\">{{facilityname}}</h3>
+
+{{#services}}
+<h4 style="color:green">Services</h4>
+<p>{{services}}</p>
+{{/services}}
+
+{{#owner}}
+<h4 style="color:green">Owner</h4>
+<p>{{owner}}</p>
+{{/owner}}
+`
+
+        let compost_popup_template = `
 <h3 style=\"color:green; text-transform:uppercase; font-weight:bold; font-size:112%\">{{facilityname}}</h3>
 
 {{#address}}
@@ -177,11 +190,6 @@
 {{#educational_materials}}
 <h4 style=\"color:green\">Educational materials</h4> <p>{{educational_materials}}</p> {{/educational_materials}}
 `
-
-        function pop_compost_facility_survey_responses_1_2(feature, layer) {
-            let content = Mustache.render(template, feature.properties);
-			layer.bindPopup(content, { maxWidth: 360 });
-        }
 
         function style_compost_facility_survey_responses_1_2_0(feature) {
             switch(String(feature.properties['ownership'])) {
@@ -334,13 +342,12 @@
         map.createPane('pane_compost_facility_survey_responses_1_2');
         map.getPane('pane_compost_facility_survey_responses_1_2').style.zIndex = 402;
         map.getPane('pane_compost_facility_survey_responses_1_2').style['mix-blend-mode'] = 'normal';
-        var layer_compost_facility_survey_responses_1_2 = new L.geoJson(json_compost_facility_survey_responses_1_2, {
+        /*var layer_compost_facility_survey_responses_1_2 = new L.geoJson(json_compost_facility_survey_responses_1_2, {
             attribution: '',
             interactive: true,
             dataVar: 'json_compost_facility_survey_responses_1_2',
             layerName: 'layer_compost_facility_survey_responses_1_2',
             pane: 'pane_compost_facility_survey_responses_1_2',
-            onEachFeature: pop_compost_facility_survey_responses_1_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
@@ -351,8 +358,8 @@
         });
         bounds_group.addLayer(layer_compost_facility_survey_responses_1_2);
         map.addLayer(layer_compost_facility_survey_responses_1_2);
-
-        setBounds();
+*/
+        //setBounds();
 
         let gs_layer
 
@@ -362,7 +369,8 @@
           // URL for CSV version of the Google Spreadsheet
           // which can be edited at https://docs.google.com/spreadsheets/d/1qdddXs_PzMwFsb3PMadLf9Dh7_UjBx6i7h8MDQRIRVI/edit?usp=sharing
           url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSK8LWE8tmC0nVM_avgORvyVNYgxxkPO17QWqfE1XHiOqVevRrwuVucTvyfQElVeY_WCa36HBgLC2Hb/pub?gid=942959072&single=true&output=csv'
-          fetch(url)
+          //url = 'data/test.csv'
+          fetch(url, { mode: 'no-cors'})
             .then((response) => {
               if (response.ok) response.text().then((csvtext) => {
                 gs_layer = L.geoCsv(csvtext, {
@@ -370,18 +378,15 @@
                   fieldSeparator: ',',
                   latitudeTitle: 'Latitude',
                   longitudeTitle: 'Longitude',
-                  onEachFeature: function(feature, layer) {
-                    layer.on({
-                      click: function () { alert('ok') }
-                    })
-                  },
                   pointToLayer: function(feature, latlng) {    
-                    let content = Mustache.render(template, feature.properties);
-                    return L.circleMarker(latlng)
-                      .bindTooltip(feature.properties['FacilityName'])
-                      .bindPopup(content, { maxWidth: 360 })
+                    let popup = Mustache.render(compost_popup_template, feature.properties)
+                    let tooltip = Mustache.render(compost_tooltip_template, feature.properties)
+                    return L.circleMarker(latlng, style_compost_facility_survey_responses_1_2_0(feature))
+                      .bindTooltip(tooltip)
+                      .bindPopup(popup, { maxWidth: 360 })
                   }
                 })
+                bounds_group.addLayer(gs_layer)
                 map.addLayer(gs_layer)
               })
               else {
