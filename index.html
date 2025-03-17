@@ -370,7 +370,7 @@
           // which can be edited at https://docs.google.com/spreadsheets/d/1qdddXs_PzMwFsb3PMadLf9Dh7_UjBx6i7h8MDQRIRVI/edit?usp=sharing
           url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSK8LWE8tmC0nVM_avgORvyVNYgxxkPO17QWqfE1XHiOqVevRrwuVucTvyfQElVeY_WCa36HBgLC2Hb/pub?gid=942959072&single=true&output=csv'
           //url = 'data/test.csv'
-          fetch(url, { mode: 'no-cors'})
+          fetch(url)
             .then((response) => {
               if (response.ok) response.text().then((csvtext) => {
                 gs_layer = L.geoCsv(csvtext, {
