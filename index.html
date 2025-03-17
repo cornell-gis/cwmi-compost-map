@@ -368,8 +368,8 @@
                 gs_layer = L.geoCsv(csvtext, {
                   firstLineTitles: true,
                   fieldSeparator: ',',
-                  latitudeTitle: 'latitude',
-                  longitudeTitle: 'longitude',
+                  latitudeTitle: 'Latitude',
+                  longitudeTitle: 'Longitude',
                   onEachFeature: function(feature, layer) {
                     layer.on({
                       click: function () { alert('ok') }
@@ -378,7 +378,7 @@
                   pointToLayer: function(feature, latlng) {    
                     let content = Mustache.render(template, feature.properties);
                     return L.circleMarker(latlng)
-                      .bindTooltip(feature.properties['name_of_facility'])
+                      .bindTooltip(feature.properties['FacilityName'])
                       .bindPopup(content, { maxWidth: 360 })
                   }
                 })
