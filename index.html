@@ -360,8 +360,8 @@
 
         function loadGoogleSheet() {
           // URL for CSV version of the Google Spreadsheet
-          // which can be edited at https://docs.google.com/spreadsheets/d/1ShUDiRpW_t_C6RUwkKxcUR4WKdkfWqF0mEbiWhCGDX0/edit?gid=0#gid=0
-          url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQSxhWmMdAHDp5x0TeXNHuuWT0EYbC7V8XViMTcciF8eJTgjQIwWnjEOsx9pzIw5MHoammseMAHyebU/pub?gid=0&single=true&output=csv'
+          // which can be edited at https://docs.google.com/spreadsheets/d/1bKNOVa89aJMSgPJ7xHHabM-KNSC1PFCbl6nk5KoAjfU/edit?usp=sharing
+          url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSo68u6P9CAFHZiGBtQI2URuXT4tW6sCdE_hJ4nSDiKrilhSs2wfYO0-O89ZNcNKNREEid_CDXft69M/pub?gid=327478090&single=true&output=csv
           fetch(url)
             .then((response) => {
               if (response.ok) response.text().then((csvtext) => {
@@ -375,9 +375,11 @@
                       click: function () { alert('ok') }
                     })
                   },
-                  pointToLayer: function(feature, latlng) {
+                  pointToLayer: function(feature, latlng) {    
+                    let content = Mustache.render(template, feature.properties);
                     return L.circleMarker(latlng)
-                      .bindTooltip('Photo: ' + (feature.properties.title || '(no caption)'))
+                      .bindTooltip(feature.properties['name_of_facility'])
+                      .bindPopup(content, { maxWidth: 360 })
                   }
                 })
                 map.addLayer(gs_layer)
