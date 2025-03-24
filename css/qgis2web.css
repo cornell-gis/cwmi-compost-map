@@ -1,9 +1,12 @@
-
+html, body, #map {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
 #map {
     background-color: #ffffff
-}
-html, body, #map {
-    overflow: hidden;
 }
 .col9{
     height: 100%!important;
@@ -14,9 +17,9 @@ html, body, #map {
 }
 .info {
     padding: 6px 8px;
-    font: 14px/16px Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1;
     background-color:#f8f8f8 !important;
-    color: #444444 !important;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }
@@ -79,9 +82,6 @@ html, body, #map {
     border: 0px;
 }
 
-.fa, .leaflet-container {
-    color: #444444 !important;
-}
 .leaflet-control-zoom-in, .leaflet-control-zoom-out,
 .leaflet-control-locate a,
 .leaflet-touch .leaflet-control-geocoder-icon,

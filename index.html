@@ -7,15 +7,8 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/Control.Geocoder.css">
         <link rel="stylesheet" href="css/qgis2web.css">
-        <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
-        </style>
         <title>NYS and Surrounding Compost Facilities</title>
     </head>
     <body>
@@ -23,15 +16,16 @@
         </div>
         <script src="js/leaflet.js"></script>
         <script src="js/leaflet.geocsv.js"></script>
-        <script src="js/leaflet-hash.js"></script>
         <script src="js/mustache-4.2.0.min.js"></script>
+        <script src="js/Control.Geocoder.js"></script>
         <script src="data/counties_ny_1.js"></script>
         <script>
         var map = L.map('map', {
-            zoomControl:false, maxZoom:19, minZoom:1
+            zoomControl:false,
+            maxZoom:19,
+            minZoom:1
         }).fitBounds([[38.84826338568672,-81.42369696076236],[46.316583292319216,-69.89903875763746]]);
-        var hash = new L.Hash(map);
-        map.attributionControl.setPrefix();
+        //map.attributionControl.setPrefix();
 
 
         // add map title and legend
@@ -60,8 +54,20 @@
         title.addTo(map);
 
         var zoomControl = L.control.zoom({
-            position: 'bottomleft'
+            position: 'topleft'
         }).addTo(map);
+
+        
+        var osmGeocoder = new L.Control.Geocoder({
+            geocoder: L.Control.Geocoder.nominatim(),
+            collapsed: true,
+            position: 'topleft'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+
+        console.log(osmGeocoder)
+
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
