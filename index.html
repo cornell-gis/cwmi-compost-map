@@ -59,7 +59,7 @@
 
         
         var osmGeocoder = new L.Control.Geocoder({
-            geocoder: L.Control.Geocoder.nominatim(),
+            geocoder: L.Control.Geocoder.nominatim({geocodingQueryParams: {countrycodes: 'us'}}),
             collapsed: true,
             position: 'topleft'
         }).addTo(map);
