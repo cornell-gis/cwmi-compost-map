@@ -110,24 +110,24 @@
         bounds_group.addLayer(layer_counties_ny_1)
 
         let compost_tooltip_template = `
-<h3 style=\"color:green; text-transform:uppercase; font-weight:bold; font-size:112%\">{{facilityname}}</h3>
+<h3>{{facilityname}}</h3>
 
 {{#services}}
-<h4 style="color:green">Services</h4>
+<h4>Services</h4>
 <p>{{services}}</p>
 {{/services}}
 
 {{#owner}}
-<h4 style="color:green">Owner</h4>
+<h4>Owner</h4>
 <p>{{owner}}</p>
 {{/owner}}
 `
 
         let compost_popup_template = `
-<h3 style=\"color:green; text-transform:uppercase; font-weight:bold; font-size:112%\">{{facilityname}}</h3>
+<h3>{{facilityname}}</h3>
 
 {{#address}}
-<h4 style=\"color:green\"> Address</h4>
+<h4> Address</h4>
 <p>{{address}}</p>
 {{/address}}
 
@@ -138,7 +138,7 @@
 {{/county}}
 
 {{#contact}}
-<h4 style=\"color:green\">Contact</h4>
+<h4>Contact</h4>
 <p>{{contact}}</p>
 {{/contact}}
 
@@ -151,48 +151,48 @@
 {{/cellphone}}
 
 {{#email}}
-<p><a href=\"mailto:{{email}}\">{{email}}</a></p>
+<p><a href="mailto:{{email}}">{{email}}</a></p>
 {{/email}}
 
 {{#website}}
-<p><a href=\"{{website}}\" target=\"_blank\">Go to website</a></p> {{/website}}
+<p><a href="{{website}}" target="_blank">Go to website</a></p> {{/website}}
 
 {{#other_website}}
-<p><a href=\"{{other_website}}\" target=\"_blank\" >Go to alternate website</a></p> {{/other_website}}
+<p><a href="{{other_website}}" target="_blank" >Go to alternate website</a></p> {{/other_website}}
 
 {{#major_feedstock}}
-<h4 style=\"color:green\">Major Feedstock</h4> <p>{{major_feedstock}}</p> {{/major_feedstock}}
+<h4>Major Feedstock</h4> <p>{{major_feedstock}}</p> {{/major_feedstock}}
 
 {{#feedstocks_composted}}
-<h4 style=\"color:green\">Feedstocks Composted</h4> <p>{{feedstocks_composted}}</p> {{/feedstocks_composted}}
+<h4>Feedstocks Composted</h4> <p>{{feedstocks_composted}}</p> {{/feedstocks_composted}}
 
 {{#organics_sources}}
-<h4 style=\"color:green\">Source of Organics</h4> <p>{{organics_sources}}</p> {{/organics_sources}}
+<h4>Source of Organics</h4> <p>{{organics_sources}}</p> {{/organics_sources}}
 
 {{#outside_sources}}
-<h4 style=\"color:green\">Accepts outside sources</h4> <p>{{outside_sources}}</p> {{/outside_sources}}
+<h4>Accepts outside sources</h4> <p>{{outside_sources}}</p> {{/outside_sources}}
 
 {{#compost_process}}
-<h4 style=\"color:green\">Compost process</h4> <p>{{compost_process}}</p> {{/compost_process}}
+<h4>Compost process</h4> <p>{{compost_process}}</p> {{/compost_process}}
 
 {{#compost_use}}
-<h4 style=\"color:green\">Compost use</h4> <p>{{compost_use}}</p> {{/compost_use}}
+<h4>Compost use</h4> <p>{{compost_use}}</p> {{/compost_use}}
 
 {{#bin_sales}}
-<h4 style=\"color:green\">Bin sales</h4>
+<h4>Bin sales</h4>
 <p>{{bin_sales}}</p>
 {{/bin_sales}}
 
 {{#classes_offered}}
-<h4 style=\"color:green\">Classes offered</h4> <p>{{classes_offered}}</p> {{/classes_offered}}
+<h4>Classes offered</h4> <p>{{classes_offered}}</p> {{/classes_offered}}
 
 {{#demonstrations}}
-<h4 style=\"color:green\">Demonstrations</h4>
+<h4>Demonstrations</h4>
 <p>{{demonstrations}}</p>
 {{/demonstrations}}
 
 {{#educational_materials}}
-<h4 style=\"color:green\">Educational materials</h4> <p>{{educational_materials}}</p> {{/educational_materials}}
+<h4>Educational materials</h4> <p>{{educational_materials}}</p> {{/educational_materials}}
 `
 
         function style_compost_facility_survey_responses_1_2_0(feature) {
