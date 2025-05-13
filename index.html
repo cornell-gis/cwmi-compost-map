@@ -360,6 +360,8 @@
           fetch(url)
             .then((response) => {
               if (response.ok) response.text().then((csvtext) => {
+                // L.geoCsv won't see the last record without a final newline
+                csvtext += '\n'
                 gs_layer = L.geoCsv(csvtext, {
                   firstLineTitles: true,
                   fieldSeparator: ',',
