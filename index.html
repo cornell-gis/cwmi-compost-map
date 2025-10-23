@@ -67,10 +67,10 @@
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
 
-        map.createPane('pane_gterrain_0');
-        map.getPane('pane_gterrain_0').style.zIndex = 400;
-        var layer_osm_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
-            pane: 'pane_gterrain_0',
+        map.createPane('pane_basemap_0');
+        map.getPane('pane_basemap_0').style.zIndex = 400;
+        var layer_basemap_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}', {
+            pane: 'pane_basemap_0',
             opacity: 0.6,
             attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Basemap by Google</a>',
             minZoom: 1,
@@ -78,7 +78,7 @@
             minNativeZoom: 0,
             maxNativeZoom: 20
         });
-        map.addLayer(layer_osm_0);
+        map.addLayer(layer_basemap_0);
 
         function style_counties_ny_1_0() {
             return {
